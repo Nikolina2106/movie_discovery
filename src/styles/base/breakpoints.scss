@@ -1,0 +1,75 @@
+// Main breakpoints mixin
+// Using global "break-XX" variables as breakpoint parameters
+// @include bp($break-lg) {}
+
+@mixin bp($bp) {
+    // Smallest mobile screens
+    @if $bp== 'xs' {
+        @media (max-width: $break-xs) {
+            @content;
+        }
+    }
+
+    // Mobile screens
+    @else if $bp== 'sm' {
+        @media (max-width: $break-sm) {
+            @content;
+        }
+    }
+
+    // Tablet screens
+    @else if $bp== 'md' {
+        @media (max-width: $break-md) {
+            @content;
+        }
+    }
+
+    // Tablet only - avoid inheritance
+    @else if $bp== 'md-only' {
+        @media (min-width: ($break-sm)) and (max-width: $break-md - 1) {
+            @content;
+        }
+    }
+
+    // Desktop screens
+    @else if $bp== 'lg' {
+        @media (min-width: ($break-md + 1)) {
+            @content;
+        }
+    }
+
+    // Small desktop only - avoid inheritance
+    @else if $bp== 'lg-only' {
+        @media (min-width: $break-lg) and (max-width: ($break-xl - 1)) {
+            @content;
+        }
+    }
+
+    // Large desktop screens
+    @else if $bp== 'xl' {
+        @media (min-width: ($break-lg + 1)) {
+            @content;
+        }
+    }
+}
+
+// Screens from defined width
+@mixin bp-from($bp) {
+    @media (min-width: $bp) {
+        @content;
+    }
+}
+
+// Screens until defined width
+@mixin bp-until($bp) {
+    @media (max-width: $bp - 1px) {
+        @content;
+    }
+}
+
+// Screens only beetween defined widths
+@mixin bp-between($min, $max) {
+    @media (min-width: $min) and (max-width: $max - 1px) {
+        @content;
+    }
+}

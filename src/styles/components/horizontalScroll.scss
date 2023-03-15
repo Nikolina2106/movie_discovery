@@ -1,0 +1,44 @@
+.c-scroll {
+  display: flex;
+  justify-content: left;
+  flex-wrap: nowrap;
+  list-style: none;
+  margin: 0;
+  overflow: auto;
+  padding: 0 !important;
+
+    .tab {
+      padding: 5px !important;
+
+      &__tabItem {
+        width: 200px;
+        height: 300px;
+
+        &_content {
+          padding: 0 !important;
+        }
+      }
+
+      &__tabItemMobile {
+        width: 156px;
+        height: 234px;
+
+        &_content {
+          padding: 0 !important;
+        }
+      }
+    }
+
+
+    .scrollButtons {
+      color: #d5d5d5;
+      font-size: 3rem !important;
+    }
+
+    .moviePoster {
+      width: 200px;
+    }
+    .moviePosterMobile {
+      width: 156px;
+    }
+}

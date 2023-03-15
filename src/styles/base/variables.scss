@@ -1,0 +1,490 @@
+@use "sass:math";
+
+$page-minHeight: 643px;
+
+/************************************
+#  GLOBAL UI LOOK & FEEL
+*************************************/
+$enable-rounded: true;
+$enable-borders: true;
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-transitions: true;
+
+$enable-spacings: true;
+
+/************************************
+#  GLOBAL COLOR THEME
+*************************************/
+
+/************************************
+#  GLOBAL SPACINGS & DIMENSIONS
+*************************************/
+
+// Breakpoints
+$break-xs: 420px; // Small mobiles
+$break-sm: 767px; // Mobile
+$break-md: 1160px; // Tablet
+$break-lg: 1280px; // Desktop
+$break-xl: 1440px; // Large desktop screens (wide screen)
+
+// Grid
+$grid-columns: 12;
+$grid-gap: 30px; // Desktop
+$grid-gap-lg: 20px; // Desktop sm
+$grid-gap-md: 20px; // Tablet
+$grid-gap-sm: 16px; // Smartphones
+$grid-gap-xs: 10px; // Smaller smartphones
+
+// Container
+$container-lg: 1366px;
+$container: 1170px; // Default container with for desktop screens
+$container-md: 920px;
+$container-sm: 540px;
+$container-xs: 420px;
+
+// Global spacings
+$spacings: (
+        '1': 8px,
+        '2': 16px,
+        '3': 24px,
+        '4': 32px,
+        '5': 40px,
+);
+
+// Base spacing units
+$base-spacing-unit: 16px; // spacing between elements
+$box-spacing-unit: 24px; // spacing INSIDE boxes (padding)
+$item-spacing-unit: 24px; // spacing between items (margin)
+
+// Base block spacing
+// (horizontal spacing for main sections)
+$block-spacing: $grid-gap * 2;
+$block-spacing-lg: $grid-gap-lg * 2;
+$block-spacing-md: $grid-gap-md * 2;
+$block-spacing-sm: $grid-gap-sm * 2;
+$block-spacing-xs: $grid-gap-xs * 2;
+
+/************************************
+#  MISCELLANEOUS
+*************************************/
+
+// Borders
+$border-sm: 1px;
+$border: 1px;
+$border-lg: 3px;
+
+// Radius
+$radius-sm: 3px;
+$radius: 4px;
+$radius-lg: 8px;
+$radius-rounded: 290486px;
+
+// Animations
+$easing: ease-out;
+$speed-low: 400ms;
+$speed-medium: 150ms;
+$speed-high: 86ms;
+$speed: $speed-high; // Default speed for links / buttons
+/*
+// Shadows
+$box-shadow-sm: 0 0.125rem 0.5rem -0.125rem rgba($black, 0.2);
+$box-shadow: 0 0.5rem 1rem -0.125rem rgba($black, 0.2);
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);*/
+
+// Outlines
+$outline-size: 0 0 0 2px;
+$outline-color: none;
+$outline: 0 0 0 2px rgba(#7aacfe, 1);
+
+// Overlay
+$overlay-bg-color: rgba(103, 102, 102, 0.8);
+
+// Z-index
+$z-index--modal--trigger: 4000;
+$z-index--dropdown: 4500;
+$z-index--header: 5000;
+$z-index--modal: 60000;
+
+/************************************
+#  TYPOGRAPHY
+*************************************/
+
+// Global typography styles
+$font-family-primary: 'Open Sans', sans-serif;
+$font-family-secondary: serif;
+$font-family-code: monospace;
+$font-family-icons: 'Font Awesome 5 Free';
+$font-family-icons-alt: 'CustomIconsPackage';
+
+$font-size-base: 16px;
+$font-size-md: $font-size-base * 1.15;
+$font-size-lg: $font-size-base * 1.4;
+$font-size-sm: $font-size-base * 0.85;
+$font-size-xs: $font-size-base * 0.75;
+$letter-spacing-base: 0.03em;
+
+$typ-spacing-unit: $base-spacing-unit;
+
+$line-height-base: 1.5;
+$line-height-lg: 1.75;
+$line-height-md: 1.33;
+$line-height-sm: 1.25;
+$line-height-xs: 1.1;
+
+// Article (text editor defaults)
+$font-size-article: $font-size-base;
+$line-height-article: $line-height-base;
+
+// Headings
+$font-size-h1: 48px;
+$font-size-h1-min: 32px;
+
+$font-size-h2: 36px;
+$font-size-h2-min: 26px;
+
+$font-size-h3: 24px;
+$font-size-h3-min: 20px;
+
+$font-size-h4: 21px;
+$font-size-h4-min: 18px;
+
+$font-size-h5: 18px;
+$font-size-h5-min: 16px;
+
+$font-size-h6: 16px;
+$font-size-h6-min: 15px;
+
+$headings-font-family: null;
+$headings-font-weight: 700;
+$headings-line-height: $line-height-sm;
+$headings-color: null;
+$headings-letter-spacing: 0.03em;
+$headings-text-transform: null;
+$heading-top-spacing-unit: $typ-spacing-unit * 1.5;
+/*
+
+// Links
+$link-color: $primary;
+$link-hover-color: darken($link-color, 5%);
+$link-active-color: darken($link-hover-color, 5%);
+$link-decoration: underline;
+$link-hover-decoradion: none;
+
+$link-easing: $easing;
+$link-animation-speed: $speed;
+
+// Horizontal rule
+$hr-width: 1px;
+$hr-color: $divider-base-color;
+
+// Quotes
+$inline-quote-size: 1em;
+$inline-quote-style: italic;
+$inline-quote-color: $color-txt-primary;
+
+// Blockquotes
+$blockquote-bg: $box-bg;
+$blockquote-color: findColorInvert($blockquote-bg);
+$blockquote-padding: $box-spacing-unit * 1.25;
+$blockquote-border-width: null;
+$blockquote-border-style: null;
+$blockquote-border-color: null;
+$blockquote-radius: $radius;
+$blockquote-font-size: 1em;
+$blockquote-font-weight: null;
+$blockquote-line-height: $line-height-base;
+$blockquote-align: null;
+*/
+
+$blockquote-before-display: none;
+$blockquote-before: '"';
+$blockquote-after: '"';
+$blockquote-quote-size: null;
+$blockquote-quote-style: italic;
+$blockquote-quote-color: inherit;
+$blockquote-quote-spacing: 10px;
+
+// Lists
+$list-indent-base: $base-spacing-unit * 1.25;
+$list-ordered-indent-base: $list-indent-base * 1.5;
+
+$list-base-style: disc;
+$list-sub-style: circle;
+
+$list-ordered-base-style: decimal;
+$list-ordered-sub-style: lower-alpha;
+/*
+// Tables
+$table-base-color: $color-txt-primary;
+$table-font-size: 14px;
+
+$table-cell-border-color: $divider-base-color;
+$table-cell-border-width: 0 0 1px 0;
+
+$table-heading-color: $color-txt-primary;
+$table-heading-row-bg: linear-gradient(180deg, rgba(243, 243, 243, 0) 0%, #f3f3f3b3 100%);
+$table-heading-border-color: $table-cell-border-color;
+$table-heading-border-width: 0 0 2px 0;
+$table-heading-font-family: $font-family-primary;
+$table-heading-font-size: 14px;
+$table-heading-font-weight: 700;
+$table-heading-text-transform: null;
+
+$table-selected-bg: $color-highlight;
+$table-selected-color: findColorInvert($table-selected-bg);*/
+
+$table-even-row-bg: transparent;
+$table-odd-row-bg: #f6f6f6;
+
+$table-hover-bg: darken($table-odd-row-bg, 3%);
+
+$table-cell-padding: 16px 0px;
+$table-heading-padding: 13px 0px 10px 0px;
+
+// Selection
+$selection-bg: #000;
+$selection-color: #fff;
+
+/************************************
+#  COMPONENTS
+*************************************/
+/*
+
+// Dropdown
+$dropdown-width: 200px;
+$dropdown-bg: $box-bg;
+$dropdown-border-color: $divider-base-color;
+$dropdown-border-width: $border;
+$dropdown-shadow: $box-shadow;
+$dropdown-radius: $radius-sm;
+
+$dropdown-offset: 4px;
+$dropdown-content-padding-y: $base-spacing-unit;
+$dropdown-content-padding-x: $base-spacing-unit;
+*/
+
+// Controls - same properties for controls (buttons, inputs)
+$control-height: 40px;
+$control-height-sm: 35px;
+$control-height-md: 55px;
+$control-height-lg: 60px;
+/*
+// Buttons
+$btn-bg: $btn-bg;
+$btn-color: $color-txt-dark;
+$btn-border-color: rgba(#000, 0.1);
+$btn-shadow: $box-shadow-sm;
+
+$btn-border-width: $border;
+$btn-border-radius: $radius;
+$btn-family: $font-family-primary;
+$btn-size: $font-size-base * 0.875;
+$btn-line-height: 1.5;
+$btn-letter-spacing: 0;
+$btn-weight: 400;
+$btn-text-transform: null;
+
+$btn-min-width: null;
+$btn-padding-vertical: 0.428571429em;
+$btn-padding-horizontal: 1.714285714em;
+
+$btn-bg-hover: darken($btn-bg, 5%);
+$btn-color-hover: $color-txt-dark;
+$btn-border-color-hover: rgba(#000, 0.1);
+
+$btn-bg-active: darken($btn-bg, 10%);
+$btn-color-active: $color-txt-dark;
+$btn-border-color-active: rgba(#000, 0.1);
+
+$btn-disabled-opacity: 0.5;
+
+$btn-sm-size: $btn-size * 0.85;
+$btn-md-size: $btn-size * 1.25;
+$btn-lg-size: $btn-size * 1.5;*/
+
+// FORMS
+
+// Field
+$field-spacing: $base-spacing-unit * 1.25;
+
+// Label
+$label-bg: null;
+$label-color: inherit;
+$label-font-size: $font-size-base;
+$label-line-heigth: $line-height-sm;
+$label-font-family: $font-family-primary;
+$label-font-weight: 700;
+$label-letter-spacing: null;
+$label-text-transform: null;
+
+/*
+$label-spacing: math.div($base-spacing-unit, 2);
+*/
+$label-padding: null;
+
+$label-font-size-sm: $font-size-sm;
+$label-font-size-md: $font-size-md;
+$label-font-size-lg: $font-size-lg;
+
+// Input dimensions
+$input-height: $control-height;
+$input-padding-h: 0.75em;
+$input-padding-v: 0.5em;
+
+$input-font-family: $font-family-primary;
+$input-font-size: 16px;
+$input-line-height: 1.5;
+$input-placeholder-opacity: null;
+
+$input-border-width: 1px;
+$input-border-radius: $radius;
+
+// Small
+$input-height-sm: $control-height-sm;
+$input-font-size-sm: $font-size-sm;
+
+// Medium
+$input-height-md: $control-height-md;
+$input-font-size-md: $font-size-md;
+
+// Large
+$input-height-lg: $control-height-lg;
+$input-font-size-lg: $font-size-lg;
+
+// Textarea dimensions
+$textarea-height: ($input-font-size * $input-line-height) * 5;
+$textarea-height-sm: ($input-font-size-sm * $input-line-height) * 4;
+$textarea-height-md: ($input-font-size-md * $input-line-height) * 4;
+$textarea-height-lg: ($input-font-size-lg * $input-line-height) * 4;
+/*
+
+// Select
+$select-arrow-family: $font-family-icons;
+$select-arrow-icon: '\f078';
+$select-arrow-size: 13px;
+$select-option-hover-bg: darken(#fff, 5%);
+$select-option-hover-color: $color-txt-primary;
+$select-option-selected-bg: darken(#fff, 10%);
+$select-option-selected-color: $color-txt-primary;
+$select-option-disabled-color: #ccc;
+
+// Input skin
+$input-bg: #fff;
+$input-color: $color-txt-primary;
+$input-placeholder-color: lighten($input-color, 35%);
+$input-border-color: #dad9d9;
+$input-shadow: none; !* inset 0 0.0625em 0.125em rgba(10,10,10,.15) *!
+
+$input-transition-speed: $speed;
+$input-transition-easing: $easing;
+
+$input-bg-hover: null;
+$input-color-hover: null;
+$input-placeholder-color-hover: null;
+$input-border-color-hover: #dad9d9;
+
+$input-bg-focus: #fff;
+$input-color-focus: $color-txt-primary;
+$input-placeholder-color-focus: null;
+$input-border-color-focus: #dad9d9;
+$input-shadow-focus: none; !* $outline-size $outline-color *!
+
+$input-disabled-opacity: 0.6;
+
+// Input icon
+$enable-input-icon-box: true;
+$input-icon-size: 1em;
+$input-icon-bg: null;
+$input-icon-color: $color-txt-light;
+$input-icon-border-width: 1px;
+$input-icon-border-color: $input-border-color;
+
+// Input text
+$input-text-width: 60px;
+$input-text-color: $color-txt-light;
+$input-text-font-size: 13px;
+$input-text-font-weight: null;
+*/
+
+// Checkbox / radio
+/*
+$checkbox-spacing: math.div($base-spacing-unit, 2);
+*/
+$check-dimensions: 20px;
+$check-dimensions-sm: 16px;
+$check-dimensions-md: 24px;
+$check-dimensions-lg: 28px;
+
+$check-label-size: $font-size-base;
+$check-label-size-sm: $font-size-sm;
+$check-label-size-md: $font-size-md;
+$check-label-size-lg: $font-size-lg;
+/*
+
+$check-icon-family: $font-family-icons;
+$check-icon-font-size: 0.8em;
+$check-icon-color: $input-color;
+$checkbox-icon: '\f00c';
+*/
+
+$radio-icon-dimensions: 12px;
+$radio-icon-dimensions-sm: 8px;
+$radio-icon-dimensions-md: 16px;
+$radio-icon-dimensions-lg: 20px;
+
+/*
+$check-label-spacing: math.div($base-spacing-unit, 2);
+*/
+$check-label-line-height: 1.5;
+
+// Toggle / switch
+$toggle-width: $check-dimensions * 2;
+$toggle-height: $check-dimensions;
+
+$toggle-track-width: $toggle-width;
+/*
+$toggle-track-height: math.div($toggle-track-width, 2);
+*/
+/*
+$toggle-icon-color: lighten($check-icon-color, 50%);
+$toggle-icon-color-checked: $check-icon-color;*/
+
+$toggle-width-sm: $check-dimensions-sm * 2;
+$toggle-height-sm: $check-dimensions-sm;
+$toggle-width-md: $check-dimensions-md * 2;
+$toggle-height-md: $check-dimensions-md;
+$toggle-width-lg: $check-dimensions-lg * 2;
+$toggle-height-lg: $check-dimensions-lg;
+
+$toggle-icon-dimensions: $radio-icon-dimensions;
+$toggle-icon-dimensions-sm: $radio-icon-dimensions-sm;
+$toggle-icon-dimensions-md: $radio-icon-dimensions-md;
+$toggle-icon-dimensions-lg: $radio-icon-dimensions-lg;
+/*
+// Form help text (description, validation messages)
+$form-help-bg: null;
+$form-help-color: $color-txt-light;
+$form-help-font-size: $font-size-sm;
+$form-help-line-height: $line-height-base;
+$form-help-letter-spacing: null;
+$form-help-text-transform: null;
+$form-help-spacing: 3px;*/
+
+// Form validation colors
+$validation-icons-enable: true;
+$validation-success-enable: true;
+$validation-icons-family: $font-family-icons;
+$validation-icons-size: inherit;
+/*
+$error-color: $danger;
+$error-bg: findLightColor($danger);
+$error-border-color: $danger;
+$error-focus-outline: $outline-size rgba($error-color, 0.5);
+$error-icon: '\f06a';
+
+$success-color: $success;
+$success-bg: findLightColor($success);
+$success-border-color: $success;
+$success-focus-outline: $outline-size rgba($success-color, 0.5);
+$success-icon: '\f058';*/
