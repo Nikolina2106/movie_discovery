@@ -1,0 +1,123 @@
+// contrast
+// provide background-color of element
+// return dark or light color variation depend on background luminance
+// ensure enough contrast between background and content
+
+@function contrast($color, $dark: $contrast-txt-dark, $light: $contrast-txt-light) {
+    @if $color == null {
+        @return null;
+    } @else {
+        $yiq: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
+        //@return if($yiq >= 128, $dark, $light);
+        @return if($yiq >= 155, $dark, $light);
+    }
+}
+
+// add background and color
+// return fallback ($light/$dark) color if there is not enough contrast
+@mixin bg-color($bg, $color: $color-txt-primary) {
+    background-color: $bg;
+    color: contrast($bg, $color);
+}
+
+// em
+// return font-size in ems based on passed values in pixels
+@function em($pixels, $context: $font-size-base) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $pixels / $context * 1em;
+}
+
+// hex to hsl
+@function to-hsl($color) {
+    $color-hue: hue($color);
+    $color-saturation: saturation($color);
+    $color-lightness: lightness($color);
+    @return hsl($color-hue, $color-saturation, $color-lightness);
+}
+
+@function powerNumber($number, $exp) {
+    $value: 1;
+
+    @if $exp > 0 {
+        @for $i from 1 through $exp {
+            $value: $value * $number;
+        }
+    } @else if $exp < 0 {
+        @for $i from 1 through -$exp {
+            $value: $value / $number;
+        }
+    }
+
+    @return $value;
+}
+
+@function colorLuminance($color) {
+    $color-rgb: (
+        'red': red($color),
+        'green': green($color),
+        'blue': blue($color),
+    );
+
+    @each $name, $value in $color-rgb {
+        $adjusted: 0;
+        $value: ($value / 255);
+
+        @if $value < 0.03928 {
+            $value: $value / 12.92;
+        } @else {
+            $value: (($value + 0.055) / 1.055);
+            $value: powerNumber($value, 2);
+        }
+
+        $color-rgb: map-merge(
+            $color-rgb,
+            (
+                $name: $value,
+            )
+        );
+    }
+
+    @return map-get($color-rgb, 'red') * 0.2126 + map-get($color-rgb, 'green') * 0.7152 + map-get($color-rgb, 'blue') * 0.0722;
+}
+
+@function findColorInvert($color) {
+    @if colorLuminance($color) > 0.55 {
+        @return rgba(#000, 0.7);
+    } @else {
+        @return #fff;
+    }
+}
+
+@function findLightColor($color) {
+    @if type-of($color) == 'color' {
+        $l: 96%;
+
+        @if lightness($color) > 96% {
+            $l: lightness($color);
+        }
+
+        @return change-color($color, $lightness: $l);
+    }
+
+    @return $background;
+}
+
+@function findDarkColor($color) {
+    @if type-of($color) == 'color' {
+        $base-l: 29%;
+        $luminance: colorLuminance($color);
+        $luminance-delta: 0.53 - $luminance;
+        $target-l: round($base-l + $luminance-delta * 53);
+
+        @return change-color($color, $lightness: max($base-l, $target-l));
+    }
+
+    @return $text-strong;
+}

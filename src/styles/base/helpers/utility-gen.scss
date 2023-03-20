@@ -1,0 +1,12 @@
+// Utility generator
+@mixin generate($property, $class, $list) {
+    .#{$class}-0 {
+        #{$property}: 0;
+    }
+
+    @for $i from 0 through length($list) {
+        .#{$class}-#{$i} {
+            #{$property}: map-get($list, #{$i});
+        }
+    }
+}

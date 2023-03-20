@@ -1,0 +1,23 @@
+.l-container {
+    @include container($container);
+}
+
+.l-container--lg {
+    @include container($container-lg);
+}
+
+.l-container--md {
+    @include container($container-md);
+}
+
+.l-container--sm {
+    @include container($container-sm);
+}
+
+.l-container--xs {
+    @include container($container-xs);
+}
+
+.l-container--fluid {
+    @include container('auto');
+}

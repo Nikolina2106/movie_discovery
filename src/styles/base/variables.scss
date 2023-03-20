@@ -1,4 +1,5 @@
-@use "sass:math";
+@import 'mixins/all';
+@import 'helpers/all';
 
 $page-minHeight: 643px;
 
@@ -16,6 +17,7 @@ $enable-spacings: true;
 /************************************
 #  GLOBAL COLOR THEME
 *************************************/
+@import 'colors';
 
 /************************************
 #  GLOBAL SPACINGS & DIMENSIONS
@@ -86,11 +88,11 @@ $speed-low: 400ms;
 $speed-medium: 150ms;
 $speed-high: 86ms;
 $speed: $speed-high; // Default speed for links / buttons
-/*
+
 // Shadows
 $box-shadow-sm: 0 0.125rem 0.5rem -0.125rem rgba($black, 0.2);
 $box-shadow: 0 0.5rem 1rem -0.125rem rgba($black, 0.2);
-$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);*/
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175);
 
 // Outlines
 $outline-size: 0 0 0 2px;
@@ -162,7 +164,6 @@ $headings-color: null;
 $headings-letter-spacing: 0.03em;
 $headings-text-transform: null;
 $heading-top-spacing-unit: $typ-spacing-unit * 1.5;
-/*
 
 // Links
 $link-color: $primary;
@@ -195,7 +196,6 @@ $blockquote-font-size: 1em;
 $blockquote-font-weight: null;
 $blockquote-line-height: $line-height-base;
 $blockquote-align: null;
-*/
 
 $blockquote-before-display: none;
 $blockquote-before: '"';
@@ -214,7 +214,7 @@ $list-sub-style: circle;
 
 $list-ordered-base-style: decimal;
 $list-ordered-sub-style: lower-alpha;
-/*
+
 // Tables
 $table-base-color: $color-txt-primary;
 $table-font-size: 14px;
@@ -232,7 +232,7 @@ $table-heading-font-weight: 700;
 $table-heading-text-transform: null;
 
 $table-selected-bg: $color-highlight;
-$table-selected-color: findColorInvert($table-selected-bg);*/
+$table-selected-color: findColorInvert($table-selected-bg);
 
 $table-even-row-bg: transparent;
 $table-odd-row-bg: #f6f6f6;
@@ -249,7 +249,6 @@ $selection-color: #fff;
 /************************************
 #  COMPONENTS
 *************************************/
-/*
 
 // Dropdown
 $dropdown-width: 200px;
@@ -262,14 +261,13 @@ $dropdown-radius: $radius-sm;
 $dropdown-offset: 4px;
 $dropdown-content-padding-y: $base-spacing-unit;
 $dropdown-content-padding-x: $base-spacing-unit;
-*/
 
 // Controls - same properties for controls (buttons, inputs)
 $control-height: 40px;
 $control-height-sm: 35px;
 $control-height-md: 55px;
 $control-height-lg: 60px;
-/*
+
 // Buttons
 $btn-bg: $btn-bg;
 $btn-color: $color-txt-dark;
@@ -301,7 +299,7 @@ $btn-disabled-opacity: 0.5;
 
 $btn-sm-size: $btn-size * 0.85;
 $btn-md-size: $btn-size * 1.25;
-$btn-lg-size: $btn-size * 1.5;*/
+$btn-lg-size: $btn-size * 1.5;
 
 // FORMS
 
@@ -318,9 +316,7 @@ $label-font-weight: 700;
 $label-letter-spacing: null;
 $label-text-transform: null;
 
-/*
-$label-spacing: math.div($base-spacing-unit, 2);
-*/
+$label-spacing: ($base-spacing-unit / 2);
 $label-padding: null;
 
 $label-font-size-sm: $font-size-sm;
@@ -357,7 +353,6 @@ $textarea-height: ($input-font-size * $input-line-height) * 5;
 $textarea-height-sm: ($input-font-size-sm * $input-line-height) * 4;
 $textarea-height-md: ($input-font-size-md * $input-line-height) * 4;
 $textarea-height-lg: ($input-font-size-lg * $input-line-height) * 4;
-/*
 
 // Select
 $select-arrow-family: $font-family-icons;
@@ -374,7 +369,7 @@ $input-bg: #fff;
 $input-color: $color-txt-primary;
 $input-placeholder-color: lighten($input-color, 35%);
 $input-border-color: #dad9d9;
-$input-shadow: none; !* inset 0 0.0625em 0.125em rgba(10,10,10,.15) *!
+$input-shadow: none; /* inset 0 0.0625em 0.125em rgba(10,10,10,.15) */
 
 $input-transition-speed: $speed;
 $input-transition-easing: $easing;
@@ -388,7 +383,7 @@ $input-bg-focus: #fff;
 $input-color-focus: $color-txt-primary;
 $input-placeholder-color-focus: null;
 $input-border-color-focus: #dad9d9;
-$input-shadow-focus: none; !* $outline-size $outline-color *!
+$input-shadow-focus: none; /* $outline-size $outline-color */
 
 $input-disabled-opacity: 0.6;
 
@@ -405,12 +400,9 @@ $input-text-width: 60px;
 $input-text-color: $color-txt-light;
 $input-text-font-size: 13px;
 $input-text-font-weight: null;
-*/
 
 // Checkbox / radio
-/*
-$checkbox-spacing: math.div($base-spacing-unit, 2);
-*/
+$checkbox-spacing: ($base-spacing-unit / 2);
 $check-dimensions: 20px;
 $check-dimensions-sm: 16px;
 $check-dimensions-md: 24px;
@@ -420,22 +412,18 @@ $check-label-size: $font-size-base;
 $check-label-size-sm: $font-size-sm;
 $check-label-size-md: $font-size-md;
 $check-label-size-lg: $font-size-lg;
-/*
 
 $check-icon-family: $font-family-icons;
 $check-icon-font-size: 0.8em;
 $check-icon-color: $input-color;
 $checkbox-icon: '\f00c';
-*/
 
 $radio-icon-dimensions: 12px;
 $radio-icon-dimensions-sm: 8px;
 $radio-icon-dimensions-md: 16px;
 $radio-icon-dimensions-lg: 20px;
 
-/*
-$check-label-spacing: math.div($base-spacing-unit, 2);
-*/
+$check-label-spacing: ($base-spacing-unit / 2);
 $check-label-line-height: 1.5;
 
 // Toggle / switch
@@ -443,12 +431,10 @@ $toggle-width: $check-dimensions * 2;
 $toggle-height: $check-dimensions;
 
 $toggle-track-width: $toggle-width;
-/*
-$toggle-track-height: math.div($toggle-track-width, 2);
-*/
-/*
+$toggle-track-height: ($toggle-track-width / 2);
+
 $toggle-icon-color: lighten($check-icon-color, 50%);
-$toggle-icon-color-checked: $check-icon-color;*/
+$toggle-icon-color-checked: $check-icon-color;
 
 $toggle-width-sm: $check-dimensions-sm * 2;
 $toggle-height-sm: $check-dimensions-sm;
@@ -461,7 +447,7 @@ $toggle-icon-dimensions: $radio-icon-dimensions;
 $toggle-icon-dimensions-sm: $radio-icon-dimensions-sm;
 $toggle-icon-dimensions-md: $radio-icon-dimensions-md;
 $toggle-icon-dimensions-lg: $radio-icon-dimensions-lg;
-/*
+
 // Form help text (description, validation messages)
 $form-help-bg: null;
 $form-help-color: $color-txt-light;
@@ -469,14 +455,14 @@ $form-help-font-size: $font-size-sm;
 $form-help-line-height: $line-height-base;
 $form-help-letter-spacing: null;
 $form-help-text-transform: null;
-$form-help-spacing: 3px;*/
+$form-help-spacing: 3px;
 
 // Form validation colors
 $validation-icons-enable: true;
 $validation-success-enable: true;
 $validation-icons-family: $font-family-icons;
 $validation-icons-size: inherit;
-/*
+
 $error-color: $danger;
 $error-bg: findLightColor($danger);
 $error-border-color: $danger;
@@ -487,4 +473,4 @@ $success-color: $success;
 $success-bg: findLightColor($success);
 $success-border-color: $success;
 $success-focus-outline: $outline-size rgba($success-color, 0.5);
-$success-icon: '\f058';*/
+$success-icon: '\f058';

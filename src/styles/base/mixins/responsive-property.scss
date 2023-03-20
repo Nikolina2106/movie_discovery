@@ -1,0 +1,35 @@
+@mixin responsive-property($property, $default: null, $lg: null, $md: null, $sm: null, $xs: null) {
+    @if type-of($property) == string {
+        #{$property}: $default;
+
+        @media (max-width: $break-lg) {
+            #{$property}: $lg;
+        }
+        @media (max-width: $break-md) {
+            #{$property}: $md;
+        }
+        @media (max-width: $break-sm) {
+            #{$property}: $sm;
+        }
+        @media (max-width: $break-xs) {
+            #{$property}: $xs;
+        }
+    } @else if type-of($property) == list {
+        @each $prop in $property {
+            #{$prop}: $default;
+
+            @media (max-width: $break-lg) {
+                #{$prop}: $lg;
+            }
+            @media (max-width: $break-md) {
+                #{$prop}: $md;
+            }
+            @media (max-width: $break-sm) {
+                #{$prop}: $sm;
+            }
+            @media (max-width: $break-xs) {
+                #{$prop}: $xs;
+            }
+        }
+    }
+}

@@ -13,21 +13,27 @@
       &__tabItem {
         width: 200px;
         height: 300px;
-
-        &_content {
-          padding: 0 !important;
-        }
       }
 
       &__tabItemMobile {
         width: 156px;
         height: 234px;
-
-        &_content {
-          padding: 0 !important;
-        }
       }
     }
+
+  .content {
+    padding: 0 !important;
+
+    &__actionButton {
+      &--favorite {
+        color: red;
+      }
+      &--notFavorite {
+        color: #d5d5d5;
+        opacity: 0.7;
+      }
+    }
+  }
 
 
     .scrollButtons {

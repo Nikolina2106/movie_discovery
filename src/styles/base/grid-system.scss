@@ -1,0 +1,67 @@
+// Block padding horizontal - section/blocks horizontal padding
+@mixin block-p-h($default: $block-spacing, $lg: $block-spacing-lg, $md: $block-spacing-md, $sm: $block-spacing-sm, $xs: $block-spacing-xs) {
+    @include responsive-property([ 'padding-left', 'padding-right' ], $default, $lg, $md, $sm, $xs);
+}
+
+// Grid items - vertical spacing
+@mixin grid-items-vertical-space($default: $grid-gap, $lg: $grid-gap-lg, $md: $grid-gap-md, $sm: $grid-gap-sm, $xs: $grid-gap-xs) {
+    @include responsive-property('margin-bottom', -($default), -($lg), -($md), -($sm), -($xs));
+
+    .l-col,
+    [class^='l-col:'] {
+        @include responsive-property('margin-bottom', $default, $lg, $md, $sm, $xs);
+    }
+}
+
+// Row margin - negative row horizontal margins (reset double gaps on row sides)
+@mixin grid-row-margins($default: $grid-gap, $lg: $grid-gap-lg, $md: $grid-gap-md, $sm: $grid-gap-sm, $xs: $grid-gap-xs) {
+    @include responsive-property([ 'margin-left', 'margin-right' ], -($default / 2), -($lg / 2), -($md / 2), -($sm / 2), -($xs / 2));
+}
+
+// Col padding - cols horizontal padding
+@mixin col-padding($default: $grid-gap, $lg: $grid-gap-lg, $md: $grid-gap-md, $sm: $grid-gap-sm, $xs: $grid-gap-xs) {
+    @include responsive-property([ 'padding-left', 'padding-right' ], ($default / 2), ($lg / 2), ($md / 2), ($sm / 2), ($xs / 2));
+
+    @include responsive-property('margin-bottom', $default, $lg, $md, $sm, $xs);
+}
+
+// ROWS
+@mixin row($default: $grid-gap, $lg: $grid-gap-lg, $md: $grid-gap-md, $sm: $grid-gap-sm, $xs: $grid-gap-xs) {
+    display: flex;
+    flex-wrap: wrap;
+    @include grid-row-margins($default, $lg, $md, $sm, $xs);
+    @include grid-items-vertical-space($default, $lg, $md, $sm, $xs);
+}
+
+@mixin col($size: null, $columns: $grid-columns) {
+    @if $size == null {
+        flex: 1;
+    } @else {
+        flex: 0 0 ($size / $columns) * 100%;
+    }
+    max-width: ($size / $columns) * 100%;
+}
+
+@mixin col-half() {
+    flex: 0 0 50%;
+    max-width: 50%;
+    @include col-padding;
+}
+
+@mixin col-third() {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    @include col-padding;
+}
+
+@mixin col-quart() {
+    flex: 0 0 25%;
+    max-width: 25%;
+    @include col-padding;
+}
+
+@mixin col-fifth() {
+    flex: 0 0 20%;
+    max-width: 20%;
+    @include col-padding;
+}

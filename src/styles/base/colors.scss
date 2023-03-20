@@ -1,0 +1,50 @@
+// Base color palette, provided by design
+$primary: #494949;
+$secondary: #5611a5;
+
+$green: #48c774;
+$yellow: #ffdd57;
+$red: #f14668;
+
+$black: #0a0a0a;
+$black-bis: #121212;
+$black-ter: #242424;
+
+$white-ter: #f5f5f5;
+$white-bis: #fafafa;
+$white: #ffffff;
+
+// State colors
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+
+// Text colors
+$color-txt-primary: $primary;
+$color-txt-secondary: #444;
+$color-txt-light: lighten($color-txt-primary, 20%);
+$color-txt-dark: darken($color-txt-primary, 20%);
+
+// Background colors
+$color-bg-primary: #f3f3f3;
+$color-bg-secondary: #ffffff;
+
+// Highlight color
+$color-highlight: mix($primary, $white-bis);
+
+// Default box appearance
+$box-bg: $white-bis;
+$box-header-bg: $white-ter;
+
+// Default button appearance
+$btn-bg: $white-ter;
+$btn-active-bg: $primary;
+
+// Contrast
+$contrast-txt-dark: rgba(#000, 0.7);
+$contrast-txt-light: rgba(#fff, 0.95);
+
+// Global dividers & borders
+$divider-base-color: rgba(#000, 0.1);
+$divider-dark-color: rgba(#000, 0.25);
+$divider-light-color: rgba(#000, 0.05);

@@ -1,0 +1,15 @@
+.c-navbar {
+    &__logo {
+      @include bp(xs) {
+        display: none;
+      }
+    }
+
+    &__menu {
+      & .MuiPaper-root {
+        background-color: #10161d;
+        color: white;
+      }
+      @include scrollbars(6px, #666);
+    }
+}

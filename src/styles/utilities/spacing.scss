@@ -1,0 +1,39 @@
+// MARGINS
+.u-mx-auto {
+    margin-right: auto;
+    margin-left: auto;
+}
+.u-my-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.u-mt-auto {
+    margin-top: auto;
+}
+.u-mr-auto {
+    margin-right: auto;
+}
+.u-mb-auto {
+    margin-bottom: auto;
+}
+.u-ml-auto {
+    margin-left: auto;
+}
+
+.u-ml-sm {
+    margin-left: 0.25rem;
+}
+
+@if $enable-spacings {
+    @include generate('margin-top', 'u-mt', $spacings);
+    @include generate('margin-right', 'u-mr', $spacings);
+    @include generate('margin-bottom', 'u-mb', $spacings);
+    @include generate('margin-left', 'u-ml', $spacings);
+
+    @include generate('padding', 'u-p', $spacings);
+    @include generate('padding-top', 'u-pt', $spacings);
+    @include generate('padding-right', 'u-pr', $spacings);
+    @include generate('padding-bottom', 'u-pb', $spacings);
+    @include generate('padding-left', 'u-pl', $spacings);
+}

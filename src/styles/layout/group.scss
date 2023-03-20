@@ -1,0 +1,20 @@
+.l-group {
+    &__item {
+        & + & {
+            margin-top: 16px;
+        }
+    }
+
+    &--form {
+        & + & {
+            border-top: 1px solid #e1e1e1;
+            margin-top: 25px;
+        }
+
+        .l-group {
+            &__item {
+                margin-top: 25px;
+            }
+        }
+    }
+}

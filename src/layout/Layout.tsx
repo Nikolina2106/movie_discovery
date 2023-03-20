@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from "../common/Navbar";
+import Navbar from '../common/Navbar';
 
 interface LayoutProps {
     children: JSX.Element;
@@ -7,20 +7,20 @@ interface LayoutProps {
 }
 
 Layout.defaultProps = {
-    placeholder: '',
     onSearch: undefined,
 };
 
 export default function Layout(props: LayoutProps): JSX.Element {
-    const {children} = props;
+    const {children, onSearch} = props;
 
     return (
         <div className="l-base">
-            <main>
-                <Navbar/>
-                {children}
-            </main>
+            <div className="l-base__body">
+                <main>
+                    <Navbar onSearch={onSearch} />
+                    {children}
+                </main>
+            </div>
         </div>
     );
 }
-
