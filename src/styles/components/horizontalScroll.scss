@@ -13,12 +13,13 @@
       &__tabItem {
         width: 200px;
         height: 300px;
+
+        @include bp('xs') {
+          width: 156px;
+          height: 234px;
+        }
       }
 
-      &__tabItemMobile {
-        width: 156px;
-        height: 234px;
-      }
     }
 
   .content {
@@ -43,8 +44,9 @@
 
     .moviePoster {
       width: 200px;
-    }
-    .moviePosterMobile {
-      width: 156px;
+
+      @include bp('xs') {
+        width: 156px;
+      }
     }
 }

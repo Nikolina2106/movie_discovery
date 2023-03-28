@@ -16,11 +16,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import {useNavigate} from 'react-router-dom';
 import {styled} from '@mui/material/styles';
 import {moviesSelector} from '../store/selectors/movies.selector';
-import {selectMovieForDetailsAction, setMovieAsFavoriteAction} from '../store/sagas/actions/movies.action';
+import {setMovieAsFavoriteAction} from '../store/sagas/actions/movies.action';
 import {getYearFromStringDate} from '../helpers/utils';
 import {IMAGE_URL} from '../config';
 import {pageLoaderSelector} from '../store/selectors/pageLoader.selector';
 import PageLoader from '../common/PageLoader';
+import {selectMovieIdForDetailsAction, setMovieSearchTermAction} from '../store/reducers/actions/movies.action';
+import {IMovie} from '../types/IMovie';
 
 const HtmlTooltip = styled(({className, ...props}: TooltipProps) => <Tooltip {...props} classes={{popper: className}} />)(({theme}) => ({
     [`& .${tooltipClasses.tooltip}`]: {
@@ -32,11 +34,16 @@ const HtmlTooltip = styled(({className, ...props}: TooltipProps) => <Tooltip {..
     },
 }));
 
-export default function SearchResultMovies(): JSX.Element {
+interface SearchResultMoviesProps {
+    movies: IMovie[];
+}
+
+export default function SearchResultMovies(props: SearchResultMoviesProps): JSX.Element {
+    const {movies} = props;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {searchResultMovies, favoriteMovies} = useSelector(moviesSelector);
+    const {favoriteMovies} = useSelector(moviesSelector);
     const {searchLoader} = useSelector(pageLoaderSelector);
 
     return (
@@ -45,13 +52,14 @@ export default function SearchResultMovies(): JSX.Element {
                 <PageLoader />
             ) : (
                 <>
-                    {searchResultMovies.map((movie) => (
+                    {movies.map((movie) => (
                         <div className="l-col:2 sm:4 xs:4 u-ml-1 u-mr-1 u-mt-4 u-mb-4" key={movie.id}>
                             <Card
                                 key={movie.id}
                                 className="c-searchResultMovies__card"
                                 onClick={() => {
-                                    dispatch(selectMovieForDetailsAction(movie.id));
+                                    dispatch(setMovieSearchTermAction(''));
+                                    dispatch(selectMovieIdForDetailsAction(movie.id));
                                     navigate(`/movieDiscovery/${movie.id}`);
                                 }}
                             >
@@ -87,7 +95,7 @@ export default function SearchResultMovies(): JSX.Element {
                                             </Typography>
                                         </HtmlTooltip>
                                     </CardContent>
-                                </CardActionArea>{' '}
+                                </CardActionArea>
                             </Card>
                         </div>
                     ))}

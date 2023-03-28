@@ -3,10 +3,9 @@
     &__title {
       color: white;
       padding: 30px;
-    }
 
-    &__titleMobile {
-      color: white;
-      padding: 15px;
+      @include bp('sm') {
+        padding: 15px;
+      }
     }
 }

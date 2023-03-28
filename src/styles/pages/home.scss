@@ -1,10 +1,46 @@
 .p-home {
   height: 750px;
 
-  .content {
-    justify-content: center;
-    align-content: center;
+  &__content {
     text-align: center;
 
+      &_title {
+        color: white;
+        font-weight: 900 !important;
+        margin-top: 105px !important;
+        font-size: 65px !important;
+        width: 50%;
+
+        @include bp('xs') {
+          font-size: 36px !important;
+          width: 90%;
+        }
+      }
+
+      &_subtitle {
+        color: #999c9f;
+
+        @include bp('xs') {
+          display: none;
+        }
+      }
+
+      &_discoveryButton {
+        background-color: #fbc500 !important;
+        color: black !important;
+        font-size: 16px !important;
+        text-transform: none !important;
+        font-weight: 700 !important;
+        margin-top: 50px;
+        padding: 1rem;
+        width: 15vw;
+        height: 5vh;
+
+        @include bp('xs') {
+          margin-top: 30px;
+          padding: 0.8rem;
+          width: 65vw;
+        }
+      }
   }
 }

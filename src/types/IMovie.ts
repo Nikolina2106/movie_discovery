@@ -4,6 +4,7 @@ export interface IMovie {
     adult: boolean;
     backdrop_path: string;
     genres: IGenre[];
+    genreIds: number[];
     id: number;
     media_type: string;
     original_language: string;

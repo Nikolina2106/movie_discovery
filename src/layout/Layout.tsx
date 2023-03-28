@@ -1,4 +1,5 @@
 import React from 'react';
+import {Slide, toast, ToastContainer} from 'react-toastify';
 import Navbar from '../common/Navbar';
 
 interface LayoutProps {
@@ -19,6 +20,21 @@ export default function Layout(props: LayoutProps): JSX.Element {
                 <main>
                     <Navbar onSearch={onSearch} />
                     {children}
+
+                    <ToastContainer
+                        position={toast.POSITION.BOTTOM_LEFT}
+                        theme="colored"
+                        limit={6}
+                        transition={Slide}
+                        autoClose={5000}
+                        hideProgressBar
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
                 </main>
             </div>
         </div>

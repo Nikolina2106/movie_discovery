@@ -1,0 +1,26 @@
+.c-filter {
+    @include bp('xs') {
+      margin-right: 25px;
+    }
+
+    &__select {
+      .MuiSelect-select	 {
+        background-color: #10161d;
+      }
+      .MuiInputBase-input {
+        color: #666666;
+      }
+      &_dropdown {
+        .MuiMenu-paper {
+          background-color: #10161d;
+          color: white;
+          height: 25vh;
+        }
+      }
+      }
+    &__selectLabel {
+      .MuiFormLabel-root-MuiInputLabel-root {
+        color: white !important;
+      }
+    }
+}

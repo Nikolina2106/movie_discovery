@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {useDebouncedCallback} from 'use-debounce';
 import {moviesSelector} from '../store/selectors/movies.selector';
-import {selectMovieForDetailsAction} from '../store/sagas/actions/movies.action';
+import {selectMovieIdForDetailsAction} from '../store/reducers/actions/movies.action';
 
 const pages = ['Favorites'];
 const ITEM_HEIGHT = 48;
@@ -114,15 +114,6 @@ export default function Navbar(props: NavbarProps): JSX.Element {
         <AppBar position="static" color="transparent">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box
-                        component="img"
-                        sx={{
-                            display: {xs: 'none', md: 'flex', justifyContent: 'flex-end'},
-                            height: 64,
-                        }}
-                        alt="Your logo."
-                        className="c-navbar__logo"
-                    />
                     <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                         <IconButton
                             size="large"
@@ -189,7 +180,7 @@ export default function Navbar(props: NavbarProps): JSX.Element {
                                 <MenuItem
                                     key={movie.id}
                                     onClick={() => {
-                                        dispatch(selectMovieForDetailsAction(movie.id));
+                                        dispatch(selectMovieIdForDetailsAction(movie.id));
                                         navigate(`/movieDiscovery/${movie.id}`);
                                     }}
                                 >
